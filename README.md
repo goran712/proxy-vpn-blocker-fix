@@ -1,18 +1,20 @@
-# proxy-vpn-blocker-fix
-The Proxy &amp; VPN Blocker plugin's sidebar checkbox was not appearing on custom post types (CPTs) due to an undefined meta value. 
-This caused a JavaScript error in the file:
-📂 /wp-content/plugins/proxy-vpn-blocker/assets/js/pvb-block-editor-script.js
+# Fix for Proxy & VPN Blocker Plugin – Meta Checkbox Issue  
 
-Error Description
-The script tries to read _pvb_checkbox_block_on_post from the post meta.
+## Issue  
+The **Proxy & VPN Blocker** plugin's sidebar checkbox was not appearing on **custom post types (CPTs)** due to an **undefined meta value**.  
+This caused a JavaScript error in the file:  
 
-If the meta key is missing, the script throws an error, preventing the checkbox from being displayed.
+📂 `/wp-content/plugins/proxy-vpn-blocker/assets/js/pvb-block-editor-script.js`  
 
-Solution
-The fix ensures that the meta object exists and assigns a default value (false) if the meta key is missing.
+## Error Description  
+- The script tries to read `_pvb_checkbox_block_on_post` from the post meta.  
+- If the meta key is missing, the script throws an error, preventing the checkbox from being displayed.  
 
-// Fixed Code
+## Solution  
+The fix ensures that the meta object exists and assigns a default value (`false`) if the meta key is missing.  
 
+## Fixed Code  
+```javascript
 (function (plugins, editor, components, data, i18n, element) {
   var registerPlugin = plugins.registerPlugin;
   var PluginDocumentSettingPanel = wp.editPost.PluginDocumentSettingPanel;
@@ -60,15 +62,17 @@ The fix ensures that the meta object exists and assigns a default value (false) 
     })), 
   });
 })(window.wp.plugins, window.wp.editor, window.wp.components, window.wp.data, window.wp.i18n, window.wp.element);
+```
 
-How to Apply the Fix
-Replace the existing script in:
-📂 /wp-content/plugins/proxy-vpn-blocker/assets/js/pvb-block-editor-script.js
+## How to Apply the Fix  
+Replace the existing script in:  
+📂 **`/wp-content/plugins/proxy-vpn-blocker/assets/js/pvb-block-editor-script.js`**  
 
-Why This Works
-✅ Prevents JavaScript errors by checking if the meta object exists before accessing keys.
-✅ Ensures checkbox visibility on all post types, including CPTs.
-✅ Prevents undefined values by setting a default (false) if the meta key is missing.
+## Why This Works  
+✅ **Prevents JavaScript errors** by checking if the `meta` object exists before accessing keys.  
+✅ **Ensures checkbox visibility** on all post types, including CPTs.  
+✅ **Prevents undefined values** by setting a default (`false`) if the meta key is missing.  
 
-Contributing
-If you have improvements or suggestions, feel free to submit a pull request. 
+## Contributing  
+If you have improvements or suggestions, feel free to submit a **pull request**. 🚀  
+
