@@ -11,7 +11,7 @@ If the meta key is missing, the script throws an error, preventing the checkbox 
 Solution
 The fix ensures that the meta object exists and assigns a default value (false) if the meta key is missing.
 
-Fixed Code
+// Fixed Code
 
 (function (plugins, editor, components, data, i18n, element) {
   var registerPlugin = plugins.registerPlugin;
